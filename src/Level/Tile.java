@@ -29,9 +29,11 @@ public class Tile{
 		this.y = y;
 		switch(type){
 			case 0:
+			img = getImage("/imgs/Tiles/Water.png");
 			solid = false;
 			break;
 			case 1:
+			img = getImage("/imgs/Tiles/Wall.png");
 			solid = true;
 			breakable = false;
 			case 2:
@@ -39,12 +41,16 @@ public class Tile{
 			breakable = true;
 			break;
 		}
+		tx = AffineTransform.getTranslateInstance(x-Camera.x, y-Camera.y);
 	}
 	
+	public void update(){
+		tx = AffineTransform.getTranslateInstance(x-Camera.x, y-Camera.y);
+	}
 	public void paint(Graphics g) {
-		if(solid) {
-			g.drawRect(x-(int)Camera.x, y-(int)Camera.y, 110, 110);
-		}
+		Graphics2D g2 = (Graphics2D) g;
+		g2.drawImage(img, tx, null);
+		update();
 	}
 	
 	public void init(double a, double b) {
@@ -55,7 +61,7 @@ public class Tile{
 	public Image getImage(String path) {
 		Image tempImage = null;
 		try {
-			URL imageURL = Character.class.getResource(path);
+			URL imageURL = Tile.class.getResource(path);
 			tempImage = Toolkit.getDefaultToolkit().getImage(imageURL);
 		} catch (Exception e) {
 			e.printStackTrace();

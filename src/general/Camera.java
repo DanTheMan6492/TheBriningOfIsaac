@@ -4,8 +4,8 @@ public class Camera {
 	
 	
 	public static Entity following;
-	public static double x;
-	public static double y;
+	public static int x;
+	public static int y;
 	
 	public Camera(Entity entity) {
 		following = entity;
@@ -27,9 +27,12 @@ public class Camera {
 	}
 
 	public static void update(){
-		x = following.x-(770/2)+(following.w/2);
-		y = following.y-(770/2)+(following.h/2);
+		System.out.println(following.x);
+		x = following.x/770;
+		y = following.y/770;
 
+		x *= 770;
+		y *= 770;
 	}
 }
 
