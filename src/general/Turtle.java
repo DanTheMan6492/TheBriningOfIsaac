@@ -11,6 +11,8 @@ import java.awt.geom.AffineTransform;
 import java.net.URL;
 import java.util.ArrayList;
 
+import Level.Level;
+import Level.Room;
 import Level.Tile;
 
 public class Turtle extends Enemy{
@@ -62,14 +64,21 @@ public class Turtle extends Enemy{
 	}
 	
 	public void update() {
-		if(Frame.isaac.x / 110 != x / 110
-				|| Frame.isaac.y / 110 != y / 110) {
+		if(Frame.isaac.x / 770 != x / 770
+				|| Frame.isaac.y / 770 != y / 770) {
 					return;
 				}
 		
-		for(Tile[] tileArray : Frame.tiles) {
-			for(Tile t : tileArray) {
-				checkCollisionB(t);
+		for(Room[] row : Level.level){
+			for(Room room : row){
+				if(room != null){
+					for(Tile[] tileArray : room.layout) {
+						for(Tile t : tileArray) {
+							if(t != null)
+							checkCollisionB(t);
+						}
+					}
+				}
 			}
 		}
 		

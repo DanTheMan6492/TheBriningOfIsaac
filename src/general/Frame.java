@@ -112,17 +112,19 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 								t.paint(g);
 						}
 					}
+					for(Enemy e : room.enemies) {
+						e.paint(g);
+					}
 				}
 			}
-		}
-		
-		for(Bubble b : bubbles) {
-			b.paint(g);
 		}
 		for(Enemy e : enemies) {
 			e.paint(g);
 		}
 		isaac.paint(g);
+		for(Bubble b : bubbles) {
+			b.paint(g);
+		}
 	}
 	
 	public static void main(String[] arg) {
@@ -215,6 +217,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//d is pressed
 		if(arg0.getKeyCode() == 68) {
 			isaac.moveRight();
+		}
+		
+		if(arg0.getKeyCode() == 70) {
+			((Isaac)isaac).shoot();
 		}
 	}
 
