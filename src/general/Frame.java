@@ -40,12 +40,68 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	public static ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	public static Entity isaac = new Isaac(100, 100);
 	public static Tile[][] tiles = new Tile[10][8];
-	
+	static XInputDevice[] devices;
+	public static double XAxis1;
+	int xdir = 0;
+	int ydir = 0;
+	public static double YAxis1;
 	public void paint(Graphics g) {
+
+		for(int i =0 ; i < devices.length; i++) {
+			XInputDevice device = devices[i];
+			if (device.poll()) {
+			    // Retrieve the delta
+			    XInputComponentsDelta delta = device.getDelta();
+
+			    XInputButtonsDelta buttons = delta.getButtons();
+			    XInputAxesDelta axes = delta.getAxes();
+
+
+			    // Retrieve button state change
+			    if (buttons.isPressed(XInputButton.A)) {
+			        ((Isaac)isaac).shoot();
+			    }
+
+			    // Retrieve axis state change.
+			    // The class provides methods for each axis and a method for providing an XInputAxis
+			    float brakeDelta = axes.getDelta(XInputAxis.LEFT_THUMBSTICK_X);
+				float YDelta = axes.getDelta(XInputAxis.LEFT_THUMBSTICK_Y);
+			    XAxis1 -= brakeDelta;
+				YAxis1 -= YDelta;
+
+				if(XAxis1 > 0.7){
+					isaac.moveRight();
+				} else if(XAxis1 > 0){
+					isaac.stopMoveRight();
+				}
+
+				if(XAxis1 < -0.7){
+					isaac.moveLeft();
+				} else if(XAxis1 < 0){
+					isaac.stopMoveLeft();
+				}
+
+				if(YAxis1 > 0.7){
+					isaac.moveUp();
+				} else if(YAxis1 > 0){
+					isaac.stopMoveUp();
+				}
+
+				if(YAxis1 < -0.7){
+					isaac.moveDown();
+				} else if(YAxis1 < 0){
+					isaac.stopMoveDown();
+				}
+			} else {
+			    // Controller is not connected; display a message
+			}
+		}
+
 		super.paintComponent(g);
 		for(Tile[] tileArray : tiles) {
 			for(Tile t : tileArray) {
-				t.paint(g);
+				if(t != null)
+					t.paint(g);
 			}
 		}
 		for(Bubble b : bubbles) {
@@ -58,6 +114,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	}
 	
 	public static void main(String[] arg) {
+		try {
+			devices = XInputDevice.getAllDevices();
+		} catch (XInputNotLoadedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
 		Frame f = new Frame();
 		for(int i = 0; i < 10; i ++) {
 			for(int j = 0; j < 8; j ++) {

@@ -26,14 +26,13 @@ public class Isaac extends Entity{
 		w = (int) (28*scle);
 		h = (int) (36*scle);
 		moveSpeed = 10;
-<<<<<<< Updated upstream
 		shotDelay = 10;
-		direction = "Down";
+		direction = "f";
 	}
 	
 	public void moveRight() {
 		if(control) {
-			direction = "Right";
+			direction = "r";
 			movingRight = true;
 			if(vy == 0) {
 				vx = moveSpeed;
@@ -50,7 +49,7 @@ public class Isaac extends Entity{
 	
 	public void moveLeft() {
 		if(control) {
-			direction = "Left";
+			direction = "l";
 			movingLeft = true;
 			if(vy == 0) {
 				vx = -moveSpeed;
@@ -67,7 +66,7 @@ public class Isaac extends Entity{
 	
 	public void moveUp() {
 		if(control) {
-			direction = "Up";
+			direction = "f";
 			movingUp = true;
 			if(vx == 0) {
 				vy = -moveSpeed;
@@ -84,7 +83,7 @@ public class Isaac extends Entity{
 	
 	public void moveDown() {
 		if(control) {
-			direction = "Down";
+			direction = "d";
 			movingDown = true;
 			if(vx == 0) {
 				vy = moveSpeed;
@@ -98,9 +97,6 @@ public class Isaac extends Entity{
 			}
 		}
 		direction = "d";
-=======
-		direction = "f";
->>>>>>> Stashed changes
 		bodyDir = 0;
 		txBody = AffineTransform.getTranslateInstance(x+scle*4, y+scle*21);
 	}
@@ -109,19 +105,19 @@ public class Isaac extends Entity{
 		if(shotTimer == 0) {
 			shotTimer = shotDelay;
 			switch(direction) {
-			case "Right":
+			case "r":
 				Frame.bubbles.add(new Bubble(x, y, 10, 0));
 				break;
 							
-			case "Left":
+			case "l":
 				Frame.bubbles.add(new Bubble(x, y, -10, 0));			
 				break;
 				
-			case "Up":
+			case "u":
 				Frame.bubbles.add(new Bubble(x, y, 0, -10));
 				break;
 			
-			case "Down":
+			case "f":
 				Frame.bubbles.add(new Bubble(x, y, 0, 10));				
 				break;
 			}
@@ -130,12 +126,11 @@ public class Isaac extends Entity{
 	
 	public void update() {
 		
-		if(movingDown){
-			direction = "f";
-			bodyDir = 0;
-			body = getImage("/imgs/Isaac/walkf.gif");
-		} else if(movingUp){
-			direction = "u";
+		if(movingDown || movingUp){
+			if(movingDown)
+				direction = "f";
+			else
+				direction = "u";
 			bodyDir = 0;
 			body = getImage("/imgs/Isaac/walkf.gif");
 		} else if(movingLeft){
@@ -182,8 +177,8 @@ public class Isaac extends Entity{
 		}
 
 		tx = AffineTransform.getTranslateInstance(x, y);
-		txBody = AffineTransform.getTranslateInstance(x+scle*4, y+scle*21);
 		tx.scale(scle, scle);
+		txBody = AffineTransform.getTranslateInstance(x+scle*4, y+scle*21);
 		txBody.scale(scle, scle);
 	}
 	

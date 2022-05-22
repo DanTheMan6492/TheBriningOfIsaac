@@ -119,7 +119,8 @@ public class Entity{
 	
 	public boolean checkCollisionB(Tile t) {
 		boolean result = false;
-		
+		if(t == null)
+			return false;
 		if(t.solid == true) {
 			if(x + w > t.x
 			&& x + w < t.x + t.l
