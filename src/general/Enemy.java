@@ -28,7 +28,10 @@ public class Enemy extends Entity{
 	}
 
 	public void paint(Graphics g){
-		
+		if(Frame.isaac.x / 770 != x / 770
+				|| Frame.isaac.y / 770 != y / 770) {
+					return;
+				}
 		if(health > 0) {
 			Graphics2D g2 = (Graphics2D) g;
 			g2.drawImage(img, tx, null);
