@@ -45,14 +45,14 @@ public class Isaac extends Entity{
 			vy ++;
 		}
 		
+		if(movingDown == false && vy > 0) {
+			vy --;
+		}
+		
 		for(Tile[] tileArray : Frame.tiles) {
 			for(Tile t : tileArray) {
 				checkCollision(t);
 			}
-		}
-		
-		if(movingDown == false && vy > 0) {
-			vy --;
 		}
 		
 		if(shotTimer > 0) {

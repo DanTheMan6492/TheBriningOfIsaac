@@ -13,7 +13,8 @@ import java.util.ArrayList;
 
 public class Entity{
 	
-	public int x, y, w, h, vx, vy, moveSpeed, health;
+	public int x, y, w, h, vx, vy, moveSpeed;
+	public double health;
 	public boolean control, defeated, movingRight, movingLeft, movingUp, movingDown;
 	public String action, direction;
 	public Image img; 	
@@ -114,7 +115,9 @@ public class Entity{
 		}
 	}
 	
-	public void checkCollision(Tile t) {
+	public boolean checkCollision(Tile t) {
+		boolean result = false;
+		
 		if(t.solid == true) {
 			if(x + w > t.x
 			&& x + w < t.x + t.l
@@ -122,6 +125,7 @@ public class Entity{
 	    	&& y < t.y + t.l
 	    	&& y + h - 10 > t.y
 	    	&& y + 10 < t.y + t.l) {
+				result = true;
 	    		while(x + w > t.x) {
 	    			x --;
 	    		}
@@ -132,6 +136,7 @@ public class Entity{
 	   	    && y < t.y + t.l
 	        && y + h - 10 > t.y
 	        && y + 10 < t.y + t.l) {
+	    		result = true;
 	    		while(x < t.x + t.l) {
 	    			x ++;
 	   		   	}
@@ -143,6 +148,7 @@ public class Entity{
 	    	&& x < t.x + t.l
 	    	&& x + w - 10 > t.x
 	    	&& x + 10 < x + t.l) {
+	    		result = true;
 	    		while(y + h > t.y) {
 	    			y --;
 	    		}
@@ -155,11 +161,13 @@ public class Entity{
 	    	&& x < t.x + t.l
 	    	&& x + w - 10 > t.x
 	    	&& x + 10 < t.x + t.l) {
+	    		result = true;
 	    		while(y < t.y + t.l) {
 	    			y ++;
 	    		}
 	    	}
 		}
+		return result;
 	}
 	
 	public void update() {

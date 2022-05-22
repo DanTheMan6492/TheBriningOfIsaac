@@ -33,7 +33,9 @@ import com.github.strikerx3.jxinput.listener.XInputDeviceListener;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener{
 
-	public static Entity isaac = new Isaac(400, 245);
+	Entity fish = new SwordFish(100,100);
+	Entity crab = new Crab(100,100,true);
+	public static Entity isaac = new Isaac(100, 100);
 	public static Tile[][] tiles = new Tile[10][8];
 	
 	public void paint(Graphics g) {
@@ -43,6 +45,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				t.paint(g);
 			}
 		}
+		fish.paint(g);
+		crab.paint(g);
 		isaac.paint(g);
 	}
 	
