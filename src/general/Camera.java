@@ -27,7 +27,6 @@ public class Camera {
 	}
 
 	public static void update(){
-		System.out.println(following.x);
 		x = following.x/770;
 		y = following.y/770;
 

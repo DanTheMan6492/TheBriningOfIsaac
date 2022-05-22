@@ -48,6 +48,7 @@ public class Level {
         if(y == 1){
             if(!exitGenned){
         	    level[y][x].exits[0] = true;
+                exitGenned = true;
         	    levelHelper(x, y-1, 0, false);
             }
         	return;
@@ -56,12 +57,12 @@ public class Level {
         for(int i = 0; i < 4; i++){
             if(i != 2){
                 int coin = (int) (Math.random() * 2);
-                if(coin == 0){
+                if(coin == 1){
                     flag = false;
                     int xNew = newX(x, i);
                     int yNew = newY(y, i);
                     if(xNew != -1 && xNew != 3){
-                    	level[y][x].exits[dir] = true;
+                    	level[y][x].exits[i] = true;
                         levelHelper(xNew, yNew, i, false);
                     }
                 }
@@ -69,7 +70,7 @@ public class Level {
         }
 
         if(flag){
-        	level[y][x].exits[dir] = true;
+        	level[y][x].exits[0] = true;
             levelHelper(x, y-1, 0, false);
         }
     }
