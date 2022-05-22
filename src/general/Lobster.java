@@ -11,6 +11,8 @@ import java.awt.geom.AffineTransform;
 import java.net.URL;
 import java.util.ArrayList;
 
+import Level.Level;
+import Level.Room;
 import Level.Tile;
 
 public class Lobster extends Enemy{
@@ -32,32 +34,39 @@ public class Lobster extends Enemy{
 				|| Frame.isaac.y / 110 != y / 110) {
 					return;
 				}
-		for(Tile[] tileArray : Frame.tiles) {
-			for(Tile t : tileArray) {
-				switch(checkCollisionI(t)) {
-				case 1:
-					if(vx > 0) {
-						moveLeft();
+		for(Room[] row : Level.level){
+			for(Room room : row){
+				if(room != null){
+					for(Tile[] tileArray : room.layout) {
+						for(Tile t : tileArray) {
+							if(t != null)
+								switch(checkCollisionI(t)) {
+								case 1:
+									if(vx > 0) {
+										moveLeft();
+									}
+									break;
+								
+								case 2:
+									if(vx < 0) {
+										moveRight();
+									}
+									break;
+									
+								case 3:
+									if(vy > 0) {
+										moveUp();
+									}
+									break;
+									
+								case 4:
+									if(vy < 0) {
+										moveDown();
+									}
+									break;
+								}
+						}
 					}
-					break;
-				
-				case 2:
-					if(vx < 0) {
-						moveRight();
-					}
-					break;
-					
-				case 3:
-					if(vy > 0) {
-						moveUp();
-					}
-					break;
-					
-				case 4:
-					if(vy < 0) {
-						moveDown();
-					}
-					break;
 				}
 			}
 		}

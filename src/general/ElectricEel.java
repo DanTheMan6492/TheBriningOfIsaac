@@ -30,6 +30,10 @@ public class ElectricEel extends Enemy{
 	}
 	
 	public void update() {
+		if(Frame.isaac.x / 770 != x / 770
+				|| Frame.isaac.y / 770 != y / 770) {
+					return;
+				}
 		for(Tile[] tileArray : Frame.tiles) {
 			for(Tile t : tileArray) {
 				switch(checkCollisionI(t)) {

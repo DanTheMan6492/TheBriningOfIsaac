@@ -11,6 +11,8 @@ import java.awt.geom.AffineTransform;
 import java.net.URL;
 import java.util.ArrayList;
 
+import Level.Level;
+import Level.Room;
 import Level.Tile;
 
 public class Crab extends Enemy{
@@ -21,6 +23,7 @@ public class Crab extends Enemy{
 		health = 20;
 		w = 21;
 		h = 21;
+		img = getImage("/sprites/output-onlinegiftools (1).gif");
 		if(horizontal) {
 			vx = 10;
 			vy = 0;
@@ -31,19 +34,24 @@ public class Crab extends Enemy{
 	}
 	
 	public void update() {
-		if(Frame.isaac.x / 110 != x / 110
-		|| Frame.isaac.y / 110 != y / 110) {
-			return;
-		}
+		if(Frame.isaac.x / 770 != x / 770
+				|| Frame.isaac.y / 770 != y / 770) {
+					return;
+				}
 		
-		for(Tile[] tileArray : Frame.tiles) {
-			for(Tile t : tileArray) {
-				if(checkCollisionB(t)) {
-					vx *= -1;
-					vy *= -1;
+		for(Room[] row : Level.level){
+			for(Room room : row){
+				if(room != null){
+					for(Tile[] tileArray : room.layout) {
+						for(Tile t : tileArray) {
+							if(t != null)
+							checkCollisionB(t);
+						}
+					}
 				}
 			}
 		}
+		init(x, y);
 		
 		x += vx;
 		y += vy;

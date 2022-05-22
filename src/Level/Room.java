@@ -80,7 +80,10 @@ public class Room {
 	    	break;
 	    	
 	    case 1:
-	    	
+	    	spawnEnemy();
+	    	spawnEnemy();
+	    	spawnEnemy();
+	    	spawnEnemy();
 	    	break;
 	    	
 	    case 2:
