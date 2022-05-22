@@ -22,7 +22,7 @@ public class SwordFish extends Enemy{
 	
 	public SwordFish(int x, int y) {
 		super(x, y);
-		img = getImage("sprites/swordFishCleanRight.gif");
+		img = getImage("/sprites/swordFishCleanRight.gif");
 		damage = 15;
 		health = 15;
 		w = 31;
@@ -142,5 +142,7 @@ public class SwordFish extends Enemy{
 		
 		x += vx;
 		y += vy;
+
+		tx = AffineTransform.getTranslateInstance(x-Camera.x, y-Camera.y);
 	}
 }

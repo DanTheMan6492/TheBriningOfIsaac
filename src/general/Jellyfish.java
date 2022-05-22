@@ -24,6 +24,6 @@ public class Jellyfish extends Enemy{
 	}
 	
 	public void update() {
-		//will detect collision from the player, will poison them if they touch
+		tx = AffineTransform.getTranslateInstance(x-Camera.x, y-Camera.y);
 	}
 }

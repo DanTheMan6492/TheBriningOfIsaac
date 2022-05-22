@@ -161,7 +161,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		t.start();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
-		enemies.add(new Squid(100,100));
 	}
 	
     @Override

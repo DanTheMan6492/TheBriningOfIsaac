@@ -102,5 +102,7 @@ public class Fish extends Enemy{
 		
 		x += vx;
 		y += vy;
+
+		tx = AffineTransform.getTranslateInstance(x-Camera.x, y-Camera.y);
 	}
 }

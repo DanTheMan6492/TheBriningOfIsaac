@@ -31,10 +31,11 @@ public class Lobster extends Enemy{
 	
 	public void update() {
 		
-		if(Frame.isaac.x / 110 != x / 110
-				|| Frame.isaac.y / 110 != y / 110) {
+		if(Frame.isaac.x / 770 != x / 770
+				|| Frame.isaac.y / 770 != y / 770) {
 					return;
 				}
+
 		for(Room[] row : Level.level){
 			for(Room room : row){
 				if(room != null){
@@ -74,5 +75,7 @@ public class Lobster extends Enemy{
 		
 		x += vx;
 		y += vy;
+
+		tx = AffineTransform.getTranslateInstance(x-Camera.x, y-Camera.y);
 	}
 }

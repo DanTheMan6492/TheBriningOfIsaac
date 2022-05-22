@@ -22,7 +22,7 @@ public class Turtle extends Enemy{
 	
 	public Turtle(int x, int y) {
 		super(x, y);
-		img = getImage("sprites/turtleDirtyRight.gif");
+		img = getImage("/sprites/turtleDirtyRight.gif");
 		damage = 5;
 		health = 30;
 		w = 31;
@@ -108,5 +108,7 @@ public class Turtle extends Enemy{
 		
 		x += vx;
 		y += vy;
+
+		tx = AffineTransform.getTranslateInstance(x-Camera.x, y-Camera.y);
 	}
 }

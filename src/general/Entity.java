@@ -26,7 +26,7 @@ public class Entity{
 		this.x = x;
 		this.y = y;
 		control = true;
-		tx = AffineTransform.getTranslateInstance(x, y );
+		tx = AffineTransform.getTranslateInstance(x, y);
 	}
 	
 	public void moveRight() {
