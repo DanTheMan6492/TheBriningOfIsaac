@@ -92,7 +92,7 @@ public class Squid extends Enemy{
 		if(Frame.isaac.x / 770 != x / 770
 				|| Frame.isaac.y / 770 != y / 770) {
 					return;
-				}
+		}
 		
 		for(Room[] row : Level.level){
 			for(Room room : row){
