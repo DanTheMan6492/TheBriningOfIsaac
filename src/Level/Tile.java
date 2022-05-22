@@ -16,7 +16,7 @@ import general.Camera;
 public class Tile{
 	
 	public int x, y;
-	public static int l = 30;
+	public static int l = 110;
 	public boolean solid, breakable;
 	public Image img;
 	public AffineTransform tx;
@@ -28,13 +28,13 @@ public class Tile{
 		this.x = x;
 		this.y = y;
 		switch(type){
-			case 1:
+			case 0:
 			solid = false;
 			break;
-			case 2:
+			case 1:
 			solid = true;
 			breakable = false;
-			case 3:
+			case 2:
 			solid = true;
 			breakable = true;
 			break;
@@ -43,7 +43,7 @@ public class Tile{
 	
 	public void paint(Graphics g) {
 		if(solid) {
-			g.drawRect(x-(int)Camera.x, y-(int)Camera.y, l, l);
+			g.drawRect(x-(int)Camera.x, y-(int)Camera.y, 110, 110);
 		}
 	}
 	

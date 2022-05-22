@@ -17,7 +17,7 @@ import Level.Level;
 
 public class Isaac extends Entity{
 	
-	public int damage, shotTimer, shotSpeed, shotDelay, diveDuration;
+	public int damage, shotTimer, shotSpeed, shotDelay, diveDuration, armor, bubblew;
 	public Image body;
 	private double scle = 2.5;
 	public int bodyDir;

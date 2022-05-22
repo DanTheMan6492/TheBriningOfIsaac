@@ -8,6 +8,18 @@ public class Level {
         level = new Room[4][3];
         levelHelper(1, 3, 0, true);
         initRooms();
+        for(Room[] row : Level.level){
+			for(Room room : row){
+				if(room != null){
+					for(boolean bool : room.exits) {
+						System.out.print(bool);
+					}
+					System.out.println();
+				} else {
+					System.out.println("none");	
+				}
+			}
+		}
     }
 
     //dir 0: up
@@ -29,35 +41,27 @@ public class Level {
                 level[y][x] = new Room( (int) (Math.random() * 3) + 1, x, y);
         }
         if(!init){
-            level[y][x].exits[(dir+4)%8] = true;;
+            level[y][x].exits[(dir+2) % 4] = true;;
             if(y == 0)
                 return;
         }
 
 
         if(y == 1){
-            switch(x){
-                case 0:
-                levelHelper(x+1, y-1, 1, false);
-                return;
-                case 1:
-                levelHelper(x, y-1, 0, false);
-                return;
-                case 2:
-                levelHelper(x-1, y-1, 7, false);
-                return;
-
-            }
+        	level[y][x].exits[0] = true;
+        	levelHelper(x, y-1, 0, false);
+        	return;
         }
         boolean flag = true;
-        for(int i = 0; i < 8; i++){
-            if((i < 3) || (i > 5)){
-                int coin =  (int) (Math.random() * 2);
+        for(int i = 0; i < 4; i++){
+            if(i != 2){
+                int coin = (int) (Math.random() * 2);
                 if(coin == 0){
                     flag = false;
                     int xNew = newX(x, i);
                     int yNew = newY(y, i);
                     if(xNew != -1 && xNew != 3){
+                    	level[y][x].exits[dir] = true;
                         levelHelper(xNew, yNew, i, false);
                     }
                 }
@@ -65,9 +69,11 @@ public class Level {
         }
 
         if(flag){
+        	level[y][x].exits[dir] = true;
             levelHelper(x, y-1, 0, false);
         }
     }
+    
 
     public static void initRooms(){
         for(Room[] row : level){

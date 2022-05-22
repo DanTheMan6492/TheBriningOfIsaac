@@ -24,7 +24,6 @@ public class Bubble extends Entity{
 		this.vy = vy;
 		damage = 5;
 		w = 10;
-		h = 10;
 		active = true;
 		img = getImage("/sprites/bubble.png");
 	}
@@ -33,7 +32,7 @@ public class Bubble extends Entity{
 		if(e.x + e.w > x
 		&& e.x < x + w
 		&& e.y + e.h > y
-		&& e.y < y + h) {
+		&& e.y < y + w) {
 			active = false;
 			e.takeDamage(damage);
 		}
