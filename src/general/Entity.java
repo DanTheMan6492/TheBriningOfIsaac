@@ -115,7 +115,7 @@ public class Entity{
 		}
 	}
 	
-	public boolean checkCollision(Tile t) {
+	public boolean checkCollisionB(Tile t) {
 		boolean result = false;
 		
 		if(t.solid == true) {
@@ -170,11 +170,87 @@ public class Entity{
 		return result;
 	}
 	
+	public int checkCollisionI(Tile t) {
+		int result = 0;
+		
+		if(t.solid == true) {
+			if(x + w > t.x
+			&& x + w < t.x + t.l
+			&& y + h > t.y
+	    	&& y < t.y + t.l
+	    	&& y + h - 10 > t.y
+	    	&& y + 10 < t.y + t.l) {
+				result = 1;
+	    		while(x + w > t.x) {
+	    			x --;
+	    		}
+	    	}
+	    	if(x < t.x + t.l
+	    	&& x > t.x
+	  		&& y + h > t.y
+	   	    && y < t.y + t.l
+	        && y + h - 10 > t.y
+	        && y + 10 < t.y + t.l) {
+	    		result = 2;
+	    		while(x < t.x + t.l) {
+	    			x ++;
+	   		   	}
+	    	}
+			    	
+	    	if(y + h > t.y
+	    	&& y + h < t.y + t.l
+	    	&& x + w > t.x
+	    	&& x < t.x + t.l
+	    	&& x + w - 10 > t.x
+	    	&& x + 10 < x + t.l) {
+	    		result = 3;
+	    		while(y + h > t.y) {
+	    			y --;
+	    		}
+	    	}
+
+			    	
+	    	if(y < t.y + t.l
+	    	&& y > t.y
+	    	&& x + w > x
+	    	&& x < t.x + t.l
+	    	&& x + w - 10 > t.x
+	    	&& x + 10 < t.x + t.l) {
+	    		result = 4;
+	    		while(y < t.y + t.l) {
+	    			y ++;
+	    		}
+	    	}
+		}
+		return result;
+	}
+	
+	public void takeDamage(int damage) {
+		if(health == 0) {return;}
+		
+		if(health - damage > 0) {
+			health -= damage;
+		}else {
+			defeat();
+		}
+	}
+	
+	public void defeat() {
+		control = false;
+		health = 0;
+	}
+	
 	public void update() {
 		
 	}
 	
-	public void paint(Graphics g) {}
+	public void paint(Graphics g) {
+		if(health > 0) {
+			Graphics2D g2 = (Graphics2D) g;
+			update();
+			g.drawRect(x, y, w, h);
+		}
+	}
 	
 	public void init(double a, double b) {
 		tx.setToTranslation(a, b);

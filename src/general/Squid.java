@@ -11,18 +11,18 @@ import java.awt.geom.AffineTransform;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class SwordFish extends Enemy{
+public class Squid extends Enemy{
 		
 	public int IBDTimer, dashTimer;
 	//	In-between-dashes timer
 	
-	public SwordFish(int x, int y) {
+	public Squid(int x, int y) {
 		super(x, y);
-		health = 15;
+		health = 10;
 		w = 31;
 		h = 21;
 		control = true;
-		moveSpeed = 20;
+		moveSpeed = 14;
 		IBDTimer = 50;
 	}
 	
@@ -51,36 +51,34 @@ public class SwordFish extends Enemy{
 	}
 	
 	public void dash() {
-		/*
-		if(Frame.isaac.x + Frame.isaac.w/2 - 20 > x + w/2){
+		switch((int)(Math.random() * 3)) {
+		case 0:
 			moveRight();
-		}else if(Frame.isaac.x + Frame.isaac.w/2 + 20 < x + w/2){
+			break;
+			
+		case 1:
 			moveLeft();
-		}else {
+			break;
+			
+		case 2:
 			stopMoveRight();
 			stopMoveLeft();
+			break;
 		}
 		
-		if(Frame.isaac.y + Frame.isaac.h - 20 > y + h/2){
-			moveDown();
-		}else if(Frame.isaac.y + Frame.isaac.h + 20 < y + h/2){
+		switch((int)(Math.random() * 3)) {
+		case 0:
 			moveUp();
-		}else {
+			break;
+			
+		case 1:
+			moveDown();
+			break;
+			
+		case 2:
 			stopMoveUp();
 			stopMoveDown();
-		}*/
-		
-		int xDist = (x + w/2) - (Frame.isaac.x + Frame.isaac.w/2);
-		int yDist = (y + h/2) - (Frame.isaac.y + Frame.isaac.h/2);
-		
-		vy = (int)(moveSpeed / (Math.sqrt(xDist * xDist / yDist / yDist + 1)));
-		vx = (int)(Math.sqrt(moveSpeed * moveSpeed - vy * vy));
-		
-		if(xDist > 0) {
-			vx *= -1;
-		}
-		if(yDist > 0) {
-			vy *= -1;
+			break;
 		}
 	}
 	
@@ -102,7 +100,8 @@ public class SwordFish extends Enemy{
 			stopMoveDown();
 			if(IBDTimer == 0) {
 				dash();
-				IBDTimer = 20;
+				IBDTimer = 50;
+				//in projectiles spawn a ink cloud
 			}
 		}
 		

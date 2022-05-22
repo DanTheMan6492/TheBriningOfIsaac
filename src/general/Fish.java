@@ -15,6 +15,7 @@ public class Fish extends Enemy{
 		
 	public Fish(int x, int y) {
 		super(x, y);
+		health = 20;
 		w = 31;
 		h = 21;
 		moveSpeed = 4;
@@ -75,7 +76,7 @@ public class Fish extends Enemy{
 	public void update() {
 		for(Tile[] tileArray : Frame.tiles) {
 			for(Tile t : tileArray) {
-				checkCollision(t);
+				checkCollisionB(t);
 			}
 		}
 		
@@ -83,11 +84,5 @@ public class Fish extends Enemy{
 		
 		x += vx;
 		y += vy;
-	}
-	
-	public void paint(Graphics g) {
-		Graphics2D g2 = (Graphics2D) g;
-		update();
-		g.drawRect(x, y, w, h);
 	}
 }

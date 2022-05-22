@@ -12,6 +12,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.JFrame;
@@ -32,9 +33,9 @@ import com.github.strikerx3.jxinput.listener.SimpleXInputDeviceListener;
 import com.github.strikerx3.jxinput.listener.XInputDeviceListener;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener{
-
-	Entity fish = new SwordFish(100,100);
-	Entity crab = new Crab(100,100,true);
+	
+	public static ArrayList<Bubble> bubbles = new ArrayList<Bubble>();
+	public static ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	public static Entity isaac = new Isaac(100, 100);
 	public static Tile[][] tiles = new Tile[10][8];
 	
@@ -45,8 +46,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				t.paint(g);
 			}
 		}
-		fish.paint(g);
-		crab.paint(g);
+		for(Bubble b : bubbles) {
+			b.paint(g);
+		}
+		for(Enemy e : enemies) {
+			e.paint(g);
+		}
 		isaac.paint(g);
 	}
 	
@@ -65,7 +70,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	public Frame() {
 		JFrame f = new JFrame("The Brining of Isaac");
-		f.setSize(new Dimension(900, 720));
+		f.setSize(new Dimension(770, 770));
 		f.setBackground(Color.blue);
 		f.add(this);
 		f.setResizable(false);
@@ -76,6 +81,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		t.start();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
+		enemies.add(new Squid(100,100));
 	}
 	
     @Override
@@ -155,7 +161,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//d is released
 		if(arg0.getKeyCode() == 68) {
 			isaac.stopMoveRight();
-		}		
+		}
+		
+		//f is pressed
+		if(arg0.getKeyCode() == 70) {
+			((Isaac)isaac).shoot();
+		}
 	}
 
 	@Override

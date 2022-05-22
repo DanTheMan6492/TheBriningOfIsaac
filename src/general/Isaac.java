@@ -13,18 +13,105 @@ import java.util.ArrayList;
 
 public class Isaac extends Entity{
 	
-	public int shotTimer;
+	public int shotTimer, shotDelay;
 	
 	public Isaac(int x, int y) {
 		super(x, y);
 		w = 21;
 		h = 30;
 		moveSpeed = 10;
+		shotDelay = 10;
+		direction = "Down";
+	}
+	
+	public void moveRight() {
+		if(control) {
+			direction = "Right";
+			movingRight = true;
+			if(vy == 0) {
+				vx = moveSpeed;
+			}else {
+				vx = (int) (moveSpeed / Math.sqrt(2));
+				if(vy > 0) {
+					vy = (int) (moveSpeed / Math.sqrt(2));
+				}else if(vy < 0) {
+					vy = (int) (-moveSpeed / Math.sqrt(2));
+				}
+			}
+		}
+	}
+	
+	public void moveLeft() {
+		if(control) {
+			direction = "Left";
+			movingLeft = true;
+			if(vy == 0) {
+				vx = -moveSpeed;
+			}else {
+				vx = (int) (-moveSpeed / Math.sqrt(2));
+				if(vy > 0) {
+					vy = (int) (moveSpeed / Math.sqrt(2));
+				}else if(vy < 0) {
+					vy = (int) (-moveSpeed / Math.sqrt(2));
+				}
+			}
+		}
+	}
+	
+	public void moveUp() {
+		if(control) {
+			direction = "Up";
+			movingUp = true;
+			if(vx == 0) {
+				vy = -moveSpeed;
+			}else {
+				vy = (int) (-moveSpeed / Math.sqrt(2));
+				if(vx > 0) {
+					vx = (int) (moveSpeed / Math.sqrt(2));
+				}else if(vx < 0) {
+					vx = (int) (-moveSpeed / Math.sqrt(2));
+				}
+			}
+		}
+	}
+	
+	public void moveDown() {
+		if(control) {
+			direction = "Down";
+			movingDown = true;
+			if(vx == 0) {
+				vy = moveSpeed;
+			}else {
+				vy = (int) (moveSpeed / Math.sqrt(2));
+				if(vx > 0) {
+					vx = (int) (moveSpeed / Math.sqrt(2));
+				}else if(vx < 0) {
+					vx = (int) (-moveSpeed / Math.sqrt(2));
+				}
+			}
+		}
 	}
 	
 	public void shoot() {
 		if(shotTimer == 0) {
+			shotTimer = shotDelay;
+			switch(direction) {
+			case "Right":
+				Frame.bubbles.add(new Bubble(x, y, 10, 0));
+				break;
+							
+			case "Left":
+				Frame.bubbles.add(new Bubble(x, y, -10, 0));			
+				break;
+				
+			case "Up":
+				Frame.bubbles.add(new Bubble(x, y, 0, -10));
+				break;
 			
+			case "Down":
+				Frame.bubbles.add(new Bubble(x, y, 0, 10));				
+				break;
+			}
 		}
 	}
 	
@@ -51,7 +138,7 @@ public class Isaac extends Entity{
 		
 		for(Tile[] tileArray : Frame.tiles) {
 			for(Tile t : tileArray) {
-				checkCollision(t);
+				checkCollisionB(t);
 			}
 		}
 		

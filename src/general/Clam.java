@@ -11,9 +11,14 @@ import java.awt.geom.AffineTransform;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class Enemy extends Entity{
-	
-	public Enemy(int x, int y) {
+public class Clam extends Enemy{
+		
+	public Clam(int x, int y) {
 		super(x, y);
+		w = 21;
+		h = 21;
+		moveSpeed = 0;
 	}
+	
+	//will drop loot when defeated
 }
