@@ -11,6 +11,8 @@ import java.awt.geom.AffineTransform;
 import java.net.URL;
 import java.util.ArrayList;
 
+import Level.Level;
+import Level.Room;
 import Level.Tile;
 
 public class Bubble extends Entity{
@@ -39,16 +41,29 @@ public class Bubble extends Entity{
 	}
 	
 	public void update() {
-		for(Tile[] tileArray : Frame.tiles) {
-			for(Tile t : tileArray) {
-				if(checkCollisionB(t)) {
-					active = false;
+		for(Room[] row : Level.level){
+			for(Room room : row){
+				if(room != null){
+					for(Tile[] tileArray : room.layout) {
+						for(Tile t : tileArray) {
+							if(t != null)
+								if(checkCollisionB(t)) {
+									active = false;
+								}
+						}
+					}
 				}
 			}
 		}
 		
-		for(Enemy e : Frame.enemies) {
-			checkCollition(e);
+		for(Room[] row : Level.level){
+			for(Room room : row){
+				if(room != null){
+					for(Enemy e : room.enemies) {
+						checkCollition(e);
+					}
+				}
+			}
 		}
 		
 		x += vx;

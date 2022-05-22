@@ -249,6 +249,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//f is pressed
 		if(arg0.getKeyCode() == 70) {
 			((Isaac)isaac).shoot();
+			System.out.println("fedasfdsasd");
 		}
 	}
 

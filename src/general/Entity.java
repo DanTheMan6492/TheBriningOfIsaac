@@ -256,7 +256,7 @@ public class Entity{
 	}
 	
 	public void init(double a, double b) {
-		tx.setToTranslation(a, b);
+		tx = AffineTransform.getTranslateInstance(a-Camera.x, b-Camera.y);
 		tx.scale(1, 1);
 	}
 

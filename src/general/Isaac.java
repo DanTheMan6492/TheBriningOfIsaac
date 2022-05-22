@@ -103,6 +103,7 @@ public class Isaac extends Entity{
 	}
 	
 	public void shoot() {
+		
 		if(shotTimer <= 0) {
 			shotTimer = shotDelay;
 			switch(direction) {
