@@ -183,7 +183,7 @@ public class Isaac extends Entity{
 			shotTimer --;
 		}
 
-		tx = AffineTransform.getTranslateInstance(x-(int)Camera.x, y-(int)Camera.y);
+		tx = AffineTransform.getTranslateInstance(x-Camera.x, y-Camera.y);
 		tx.scale(scle, scle);
 		txBody = AffineTransform.getTranslateInstance(x+scle*4-(int)Camera.x, y+scle*21-(int)Camera.y);
 		txBody.scale(scle, scle);
