@@ -11,22 +11,20 @@ import java.awt.geom.AffineTransform;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class Item{
+public class TidePod extends Item{
 	
 	public int x, y, w, h;
 	public boolean pickedUp;
 	public Image img; 	
 	public AffineTransform tx;
 
-	public Item(int x, int y) {
-		this.x = x;
-		this.y = y;
-		pickedUp = false;
-		tx = AffineTransform.getTranslateInstance(x, y );
+	public TidePod(int x, int y) {
+		super(x, y);
 	}
 	
 	public void pickUp() {
-		pickedUp = true;
+		super.pickUp();
+		((Isaac)Frame.isaac).damage += 5;
 	}
 	
 	public void paint(Graphics g) {
