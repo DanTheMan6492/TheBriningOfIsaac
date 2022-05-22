@@ -15,7 +15,7 @@ import Level.Tile;
 
 public class Isaac extends Entity{
 	
-	public int shotTimer, shotDelay;
+	public int damage, shotTimer, shotSpeed, shotDelay, diveDuration;
 	public Image body;
 	private double scle = 2.5;
 	public int bodyDir;
@@ -27,6 +27,7 @@ public class Isaac extends Entity{
 		h = (int) (36*scle);
 		moveSpeed = 10;
 		shotDelay = 10;
+		shotSpeed = 12;
 		direction = "f";
 	}
 	
@@ -103,19 +104,19 @@ public class Isaac extends Entity{
 			shotTimer = shotDelay;
 			switch(direction) {
 			case "r":
-				Frame.bubbles.add(new Bubble(x, y, 10, 0));
+				Frame.bubbles.add(new Bubble(x, y, shotSpeed, 0));
 				break;
 							
 			case "l":
-				Frame.bubbles.add(new Bubble(x, y, -10, 0));			
+				Frame.bubbles.add(new Bubble(x, y, -shotSpeed, 0));			
 				break;
 				
 			case "u":
-				Frame.bubbles.add(new Bubble(x, y, 0, -10));
+				Frame.bubbles.add(new Bubble(x, y, 0, -shotSpeed));
 				break;
 			
 			case "f":
-				Frame.bubbles.add(new Bubble(x, y, 0, 10));				
+				Frame.bubbles.add(new Bubble(x, y, 0, shotSpeed));		
 				break;
 			}
 		}

@@ -15,7 +15,7 @@ import Level.Tile;
 
 public class Entity{
 	
-	public int x, y, w, h, vx, vy, moveSpeed;
+	public int x, y, w, h, vx, vy, moveSpeed, damage;
 	public double health;
 	public boolean control, defeated, movingRight, movingLeft, movingUp, movingDown;
 	public String action, direction;

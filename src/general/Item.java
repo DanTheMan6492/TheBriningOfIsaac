@@ -13,31 +13,28 @@ import java.util.ArrayList;
 
 public class Item{
 	
-	public int x, y, vx, vy, health;
-	public boolean defeated;
-	public String action, direction;
+	public int x, y, w, h;
+	public boolean pickedUp;
 	public Image img; 	
 	public AffineTransform tx;
 
-	public void moveRight() {}
+	public Item(int x, int y) {
+		this.x = x;
+		this.y = y;
+		pickedUp = false;
+		tx = AffineTransform.getTranslateInstance(x, y );
+	}
 	
-	public void moveLeft() {}
+	public void pickUp() {
+		pickedUp = true;
+	}
 	
-	public void moveUp() {}
-	
-	public void moveDown() {}
-	
-	public void stopMoveRight() {}
-	
-	public void stopMoveLeft() {}
-	
-	public void stopMoveUp() {}
-	
-	public void stopMoveDown() {}
-	
-	public void update() {}
-	
-	public void paint(Graphics g) {}
+	public void paint(Graphics g) {
+		if(pickedUp == false) {
+			Graphics2D g2 = (Graphics2D) g;
+			g.drawRect(x, y, w, h);
+		}
+	}
 	
 	public void init(double a, double b) {
 		tx.setToTranslation(a, b);
