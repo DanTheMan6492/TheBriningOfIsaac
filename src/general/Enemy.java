@@ -16,4 +16,13 @@ public class Enemy extends Entity{
 	public Enemy(int x, int y) {
 		super(x, y);
 	}
+	
+	public void checkCollision() {
+		if(Frame.isaac.x + Frame.isaac.w > x
+		&& Frame.isaac.x < x + w
+		&& Frame.isaac.y + Frame.isaac.h > y
+		&& Frame.isaac.y < y + w) {
+			Frame.isaac.takeDamage(damage);
+		}
+	}
 }

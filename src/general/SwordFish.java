@@ -20,6 +20,7 @@ public class SwordFish extends Enemy{
 	
 	public SwordFish(int x, int y) {
 		super(x, y);
+		damage = 15;
 		health = 15;
 		w = 31;
 		h = 21;

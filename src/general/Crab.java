@@ -17,6 +17,7 @@ public class Crab extends Enemy{
 		
 	public Crab(int x, int y, boolean horizontal) {
 		super(x, y);
+		damage = 5;
 		health = 20;
 		w = 21;
 		h = 21;

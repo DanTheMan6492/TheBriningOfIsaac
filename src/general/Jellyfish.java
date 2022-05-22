@@ -15,6 +15,7 @@ public class Jellyfish extends Enemy{
 		
 	public Jellyfish(int x, int y) {
 		super(x, y);
+		damage = 15;
 		health = 10;
 		w = 21;
 		h = 21;

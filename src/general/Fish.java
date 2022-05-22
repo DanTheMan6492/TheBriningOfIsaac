@@ -17,6 +17,7 @@ public class Fish extends Enemy{
 		
 	public Fish(int x, int y) {
 		super(x, y);
+		damage = 5;
 		health = 20;
 		w = 31;
 		h = 21;

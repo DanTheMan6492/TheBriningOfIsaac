@@ -19,6 +19,7 @@ public class ElectricEel extends Enemy{
 		
 	public ElectricEel(int x, int y) {
 		super(x, y);
+		damage = 10;
 		health = 15;
 		w = 21;
 		h = 21;

@@ -20,6 +20,7 @@ public class Squid extends Enemy{
 	
 	public Squid(int x, int y) {
 		super(x, y);
+		damage = 10;
 		health = 10;
 		w = 31;
 		h = 21;
