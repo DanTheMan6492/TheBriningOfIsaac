@@ -32,6 +32,8 @@ import com.github.strikerx3.jxinput.exceptions.XInputNotLoadedException;
 import com.github.strikerx3.jxinput.listener.SimpleXInputDeviceListener;
 import com.github.strikerx3.jxinput.listener.XInputDeviceListener;
 
+import Level.Level;
+import Level.Room;
 import Level.Tile;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener{
@@ -45,7 +47,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	int xdir = 0;
 	int ydir = 0;
 	public static double YAxis1;
+	public static Camera camera;
 	public void paint(Graphics g) {
+
+		camera.update();
 
 		for(int i =0 ; i < devices.length; i++) {
 			XInputDevice device = devices[i];
@@ -98,12 +103,19 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		}
 
 		super.paintComponent(g);
-		for(Tile[] tileArray : tiles) {
-			for(Tile t : tileArray) {
-				if(t != null)
-					t.paint(g);
+		for(Room[] row : Level.level){
+			for(Room room : row){
+				if(room != null){
+					for(Tile[] tileArray : room.layout) {
+						for(Tile t : tileArray) {
+							if(t != null)
+								t.paint(g);
+						}
+					}
+				}
 			}
 		}
+		
 		for(Bubble b : bubbles) {
 			b.paint(g);
 		}
@@ -120,13 +132,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		};
+		Level.genLevel();
+		camera = new Camera(isaac);
 		Frame f = new Frame();
 		for(int i = 0; i < 10; i ++) {
 			for(int j = 0; j < 8; j ++) {
 				if(i == 0 || j == 0 || i == 9 || j == 7) {
-					tiles[i][j] = new Tile(10 + i * Tile.l, 10 + j * Tile.l, true); 
+					tiles[i][j] = new Tile(10 + i * Tile.l, 10 + j * Tile.l, 2); 
 				}else {
-					tiles[i][j] = new Tile(10 + i * Tile.l, 10 + j * Tile.l, false); 
+					tiles[i][j] = new Tile(10 + i * Tile.l, 10 + j * Tile.l, 1); 
 				}
 			}
 		}

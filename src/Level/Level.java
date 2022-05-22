@@ -5,7 +5,7 @@ public class Level {
     public static Room[][] level;
 
     public static void genLevel(){
-        Room[][] level = new Room[4][3];
+        level = new Room[4][3];
         levelHelper(1, 3, 0, true);
         initRooms();
     }
@@ -98,11 +98,11 @@ public class Level {
     public static int newY(int y, int dir){
         switch(dir){
             case 0:
-            return y + 1;
+            return y - 1;
             case 1:
-            return y + 1;
+            return y - 1;
             case 7:
-            return y + 1;
+            return y - 1;
             default:
             return y;
         }

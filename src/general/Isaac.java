@@ -11,7 +11,9 @@ import java.awt.geom.AffineTransform;
 import java.net.URL;
 import java.util.ArrayList;
 
+import Level.Room;
 import Level.Tile;
+import Level.Level;
 
 public class Isaac extends Entity{
 	
@@ -162,10 +164,16 @@ public class Isaac extends Entity{
 		if(movingDown == false && vy > 0) {
 			vy --;
 		}
-		
-		for(Tile[] tileArray : Frame.tiles) {
-			for(Tile t : tileArray) {
-				checkCollisionB(t);
+		for(Room[] row : Level.level){
+			for(Room room : row){
+				if(room != null){
+					for(Tile[] tileArray : room.layout) {
+						for(Tile t : tileArray) {
+							if(t != null)
+							checkCollisionB(t);
+						}
+					}
+				}
 			}
 		}
 		
@@ -173,9 +181,9 @@ public class Isaac extends Entity{
 			shotTimer --;
 		}
 
-		tx = AffineTransform.getTranslateInstance(x, y);
+		tx = AffineTransform.getTranslateInstance(x-(int)Camera.x, y-(int)Camera.y);
 		tx.scale(scle, scle);
-		txBody = AffineTransform.getTranslateInstance(x+scle*4, y+scle*21);
+		txBody = AffineTransform.getTranslateInstance(x+scle*4-(int)Camera.x, y+scle*21-(int)Camera.y);
 		txBody.scale(scle, scle);
 	}
 	

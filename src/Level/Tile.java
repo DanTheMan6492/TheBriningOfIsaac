@@ -11,6 +11,8 @@ import java.awt.geom.AffineTransform;
 import java.net.URL;
 import java.util.ArrayList;
 
+import general.Camera;
+
 public class Tile{
 	
 	public int x, y;
@@ -19,15 +21,29 @@ public class Tile{
 	public Image img;
 	public AffineTransform tx;
 	
-	public Tile(int x, int y, boolean solid) {
+	//type 1: water tiles
+	//type 2: solid wall
+	//type 3: Trash
+	public Tile(int x, int y, int type) {
 		this.x = x;
 		this.y = y;
-		this.solid = solid;
+		switch(type){
+			case 1:
+			solid = false;
+			break;
+			case 2:
+			solid = true;
+			breakable = false;
+			case 3:
+			solid = true;
+			breakable = true;
+			break;
+		}
 	}
 	
 	public void paint(Graphics g) {
 		if(solid) {
-			g.drawRect(x, y, l, l);
+			g.drawRect(x-(int)Camera.x, y-(int)Camera.y, l, l);
 		}
 	}
 	
