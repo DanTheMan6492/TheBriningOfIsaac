@@ -1,4 +1,4 @@
-package general;
+package General;
  import java.awt.Color;
 import java.lang.*;
 import java.awt.Dimension;
@@ -30,6 +30,8 @@ import com.github.strikerx3.jxinput.enums.XInputButton;
 import com.github.strikerx3.jxinput.exceptions.XInputNotLoadedException;
 import com.github.strikerx3.jxinput.listener.SimpleXInputDeviceListener;
 import com.github.strikerx3.jxinput.listener.XInputDeviceListener;
+
+import Level.Tile;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener{
 

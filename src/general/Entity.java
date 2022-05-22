@@ -1,4 +1,4 @@
-package general;
+package General;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -10,6 +10,8 @@ import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
 import java.util.ArrayList;
+
+import Level.Tile;
 
 public class Entity{
 	
