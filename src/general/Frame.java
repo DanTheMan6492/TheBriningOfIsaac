@@ -67,7 +67,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	public Frame() {
 		JFrame f = new JFrame("The Brining of Isaac");
-		f.setSize(new Dimension(900, 720));
+		f.setSize(new Dimension(770, 770));
 		f.setBackground(Color.blue);
 		f.add(this);
 		f.setResizable(false);

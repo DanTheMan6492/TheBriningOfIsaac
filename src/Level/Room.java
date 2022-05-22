@@ -14,12 +14,11 @@ public class Room {
     //Type 2: Item Room
     //Type 3: Shop
     //Type 4: Exit
-    public Room(int type){
-
-    }
-
-    public Room(){
-
+    public Room(int type, int x, int y){
+        exits = new boolean[8];
+        this.type = type;
+        this.x = x;
+        this.y = y;
     }
 
     public void initRoom(){

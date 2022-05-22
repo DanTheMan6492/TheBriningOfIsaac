@@ -21,12 +21,12 @@ public class Level {
     public static void levelHelper(int x, int y, int dir, boolean init){
         if(level[y][x] == null){
             if(init)
-                level[y][x] = new Room(0);
+                level[y][x] = new Room(0, x, y);
             else if (y == 0){
-                level[y][x] = new Room(4);
+                level[y][x] = new Room(4, x, y);
             }
             else
-                level[y][x] = new Room( (int) (Math.random() * 3) + 1);
+                level[y][x] = new Room( (int) (Math.random() * 3) + 1, x, y);
         }
         if(!init){
             level[y][x].exits[(dir+4)%8] = true;;
