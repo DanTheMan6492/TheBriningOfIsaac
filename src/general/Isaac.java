@@ -96,9 +96,6 @@ public class Isaac extends Entity{
 				}
 			}
 		}
-		direction = "d";
-		bodyDir = 0;
-		txBody = AffineTransform.getTranslateInstance(x+scle*4, y+scle*21);
 	}
 	
 	public void shoot() {

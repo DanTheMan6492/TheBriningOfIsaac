@@ -26,6 +26,7 @@ public class Bubble extends Entity{
 		w = 10;
 		h = 10;
 		active = true;
+		img = getImage("/sprites/bubble.png");
 	}
 	
 	public void checkCollition(Enemy e) {
@@ -53,13 +54,15 @@ public class Bubble extends Entity{
 		
 		x += vx;
 		y += vy;
+		
+		init(x, y);
 	}
 	
 	public void paint(Graphics g) {
 		if(active) {
 			Graphics2D g2 = (Graphics2D) g;
 			update();
-			g.drawOval(x - w/2, y - h/2, w, h);
+			g2.drawImage(img, tx, null);
 		}
 	}
 }
