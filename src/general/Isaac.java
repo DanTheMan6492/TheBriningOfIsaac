@@ -23,9 +23,10 @@ public class Isaac extends Entity{
 	
 	public Isaac(int x, int y) {
 		super(x, y);
-		w = 21;
-		h = 30;
+		w = (int) (28*scle);
+		h = (int) (36*scle);
 		moveSpeed = 10;
+<<<<<<< Updated upstream
 		shotDelay = 10;
 		direction = "Down";
 	}
@@ -97,6 +98,9 @@ public class Isaac extends Entity{
 			}
 		}
 		direction = "d";
+=======
+		direction = "f";
+>>>>>>> Stashed changes
 		bodyDir = 0;
 		txBody = AffineTransform.getTranslateInstance(x+scle*4, y+scle*21);
 	}
@@ -127,7 +131,7 @@ public class Isaac extends Entity{
 	public void update() {
 		
 		if(movingDown){
-			direction = "d";
+			direction = "f";
 			bodyDir = 0;
 			body = getImage("/imgs/Isaac/walkf.gif");
 		} else if(movingUp){
@@ -143,10 +147,10 @@ public class Isaac extends Entity{
 			direction = "r";
 			body = getImage("/imgs/Isaac/walkr.gif");
 		} else{
-			body = getImage("/imgs/Isaac/stand" + Integer.toString(bodyDir) + ".gif");
+			body = getImage("/imgs/Isaac/stand" + bodyDir + ".gif");
 		}
 
-		img = getImage("/imgs/Isaac/headf.png");
+		img = getImage("/imgs/Isaac/head" + direction + ".png");
 
 		x += vx;
 		y += vy;
