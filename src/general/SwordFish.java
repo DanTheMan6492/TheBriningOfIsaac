@@ -87,6 +87,10 @@ public class SwordFish extends Enemy{
 	}
 	
 	public void update() {
+		if(Frame.isaac.x / 110 != x / 110
+				|| Frame.isaac.y / 110 != y / 110) {
+					return;
+				}
 		for(Tile[] tileArray : Frame.tiles) {
 			for(Tile t : tileArray) {
 				if(checkCollisionB(t)) {

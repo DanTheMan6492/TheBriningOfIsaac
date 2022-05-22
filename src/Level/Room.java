@@ -1,9 +1,26 @@
 package Level;
 
+import java.util.ArrayList;
+
+import general.Crab;
+import general.ElectricEel;
+import general.Enemy;
+import general.Fish;
+import general.Enemy;
+import general.Frame;
+import general.Item;
+import general.Jellyfish;
+import general.Lobster;
+import general.Squid;
+import general.SwordFish;
+import general.Turtle;
+
 public class Room {
     
     public Tile[][] layout;
     public boolean[] exits;
+    public ArrayList<Item> items = new ArrayList<Item>();
+    public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
     public int type;
     public int x;
     public int y;
@@ -12,7 +29,6 @@ public class Room {
     //Type 0: Starting Room
     //Type 1: Battle Room
     //Type 2: Item Room
-    //Type 3: Shop
     //Type 4: Exit
     public Room(int type, int x, int y){
         exits = new boolean[4];
@@ -57,8 +73,63 @@ public class Room {
             layout[3][0] = new Tile(x*770 + 000, y*770 + 330, 0);
         }
 
-        
-
-
+	    switch(type) {
+	    case 0:
+	    	Frame.isaac.x = x*770 + 3 * Tile.l;
+	    	Frame.isaac.y = y*770 + 3 * Tile.l;
+	    	break;
+	    	
+	    case 1:
+	    	
+	    	break;
+	    	
+	    case 2:
+	    	
+	    	break;
+	    
+	    case 3:
+	    	
+	    	break;
+	    }
+    }
+    
+    public void spawnEnemy() {
+    	switch((int)(Math.random()*8)) {
+    	case 0:
+			enemies.add(new Fish(x*770 + 3 * Tile.l, y*770 + 3 * Tile.l));
+			break;
+			
+    	case 1:
+			enemies.add(new Crab(x*770 + 3 * Tile.l, y*770 + 3 * Tile.l, true));
+			break;
+			
+    	case 2:
+    		enemies.add(new Crab(x*770 + 3 * Tile.l, y*770 + 3 * Tile.l, false));
+			break;
+			
+    	case 3:
+    		enemies.add(new Lobster(x*770 + 3 * Tile.l, y*770 + 3 * Tile.l));
+			break;
+			
+    	case 4:
+    		enemies.add(new Squid(x*770 + 3 * Tile.l, y*770 + 3 * Tile.l));
+			break;
+			
+    	case 5:
+    		enemies.add(new SwordFish(x*770 + 3 * Tile.l, y*770 + 3 * Tile.l));
+			break;
+			
+    	case 6:
+    		enemies.add(new Turtle(x*770 + 3 * Tile.l, y*770 + 3 * Tile.l));
+			break;
+			
+    	case 7:
+    		enemies.add(new ElectricEel(x*770 + 3 * Tile.l, y*770 + 3 * Tile.l));
+			break;
+			
+    	case 8:
+    		enemies.add(new Jellyfish(x*770 + 3 * Tile.l, y*770 + 3 * Tile.l));
+			break;
+    	}
     }
 }
