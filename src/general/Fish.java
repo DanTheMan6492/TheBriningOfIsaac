@@ -17,6 +17,7 @@ public class Fish extends Enemy{
 		
 	public Fish(int x, int y) {
 		super(x, y);
+		img = getImage("/sprites/fishDirty.gif");
 		damage = 5;
 		health = 20;
 		w = 31;

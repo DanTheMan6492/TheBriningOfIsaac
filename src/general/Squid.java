@@ -20,6 +20,7 @@ public class Squid extends Enemy{
 	
 	public Squid(int x, int y) {
 		super(x, y);
+		img = getImage("/sprites/squidDirtyRight.gif");
 		damage = 10;
 		health = 10;
 		w = 31;

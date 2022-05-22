@@ -21,6 +21,7 @@ public class Crab extends Enemy{
 		health = 20;
 		w = 21;
 		h = 21;
+		img = getImage("/sprites/crabDirty.gif");
 		if(horizontal) {
 			vx = 10;
 			vy = 0;

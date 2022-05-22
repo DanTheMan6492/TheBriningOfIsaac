@@ -20,6 +20,7 @@ public class Turtle extends Enemy{
 	
 	public Turtle(int x, int y) {
 		super(x, y);
+		img = getImage("sprites/turtleDirtyRight.gif");
 		damage = 5;
 		health = 30;
 		w = 31;

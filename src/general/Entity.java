@@ -250,8 +250,8 @@ public class Entity{
 	public void paint(Graphics g) {
 		if(health > 0) {
 			Graphics2D g2 = (Graphics2D) g;
+			g2.drawImage(img, tx, null);
 			update();
-			g.drawRect(x-(int)Camera.x, y-(int)Camera.y, w, h);
 		}
 	}
 	
