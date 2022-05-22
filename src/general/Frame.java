@@ -1,6 +1,5 @@
-package General;
- 
-import java.awt.Color;
+package general;
+ import java.awt.Color;
 import java.lang.*;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -34,7 +33,47 @@ import com.github.strikerx3.jxinput.listener.XInputDeviceListener;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener{
 
-
+	public static Entity isaac = new Isaac(400, 245);
+	public static Tile[][] tiles = new Tile[10][8];
+	
+	public void paint(Graphics g) {
+		super.paintComponent(g);
+		for(Tile[] tileArray : tiles) {
+			for(Tile t : tileArray) {
+				t.paint(g);
+			}
+		}
+		isaac.paint(g);
+	}
+	
+	public static void main(String[] arg) {
+		Frame f = new Frame();
+		for(int i = 0; i < 10; i ++) {
+			for(int j = 0; j < 8; j ++) {
+				if(i == 0 || j == 0 || i == 9 || j == 7) {
+					tiles[i][j] = new Tile(10 + i * Tile.l, 10 + j * Tile.l, true); 
+				}else {
+					tiles[i][j] = new Tile(10 + i * Tile.l, 10 + j * Tile.l, false); 
+				}
+			}
+		}
+	}
+	
+	public Frame() {
+		JFrame f = new JFrame("The Brining of Isaac");
+		f.setSize(new Dimension(900, 720));
+		f.setBackground(Color.blue);
+		f.add(this);
+		f.setResizable(false);
+		f.setLayout(new GridLayout(1,2));
+		f.addMouseListener(this);
+		f.addKeyListener(this);
+		Timer t = new Timer(16, this);
+		t.start();
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setVisible(true);
+	}
+	
     @Override
 	public void mouseClicked(MouseEvent arg0) {
 
@@ -70,13 +109,49 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-
+		//w is pressed
+		if(arg0.getKeyCode() == 87) {
+			isaac.moveUp();
+		}
+		
+		//a is pressed
+		if(arg0.getKeyCode() == 65) {
+			isaac.moveLeft();
+		}
+		
+		//s is pressed
+		if(arg0.getKeyCode() == 83) {
+			isaac.moveDown();
+		}
+		
+		//d is pressed
+		if(arg0.getKeyCode() == 68) {
+			isaac.moveRight();
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
+		//w is released
+		if(arg0.getKeyCode() == 87) {
+			isaac.stopMoveUp();
+		}
 		
+		//a is released
+		if(arg0.getKeyCode() == 65) {
+				isaac.stopMoveLeft();
+		}
+		
+		//s is released
+		if(arg0.getKeyCode() == 83) {
+			isaac.stopMoveDown();
+		}
+				
+		//d is released
+		if(arg0.getKeyCode() == 68) {
+			isaac.stopMoveRight();
+		}		
 	}
 
 	@Override
