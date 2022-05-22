@@ -11,6 +11,8 @@ import java.awt.geom.AffineTransform;
 import java.net.URL;
 import java.util.ArrayList;
 
+import Level.Tile;
+
 public class Entity{
 	
 	public int x, y, w, h, vx, vy, moveSpeed;
@@ -260,7 +262,7 @@ public class Entity{
 	public Image getImage(String path) {
 		Image tempImage = null;
 		try {
-			URL imageURL = Character.class.getResource(path);
+			URL imageURL = Entity.class.getResource(path);
 			tempImage = Toolkit.getDefaultToolkit().getImage(imageURL);
 		} catch (Exception e) {
 			e.printStackTrace();

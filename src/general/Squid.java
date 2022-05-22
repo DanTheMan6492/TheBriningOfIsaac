@@ -11,6 +11,8 @@ import java.awt.geom.AffineTransform;
 import java.net.URL;
 import java.util.ArrayList;
 
+import Level.Tile;
+
 public class Squid extends Enemy{
 		
 	public int IBDTimer, dashTimer;

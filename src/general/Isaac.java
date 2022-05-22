@@ -11,9 +11,15 @@ import java.awt.geom.AffineTransform;
 import java.net.URL;
 import java.util.ArrayList;
 
+import Level.Tile;
+
 public class Isaac extends Entity{
 	
 	public int shotTimer, shotDelay;
+	public Image body;
+	private double scle = 2.5;
+	public int bodyDir;
+	public AffineTransform txBody;
 	
 	public Isaac(int x, int y) {
 		super(x, y);
@@ -90,6 +96,9 @@ public class Isaac extends Entity{
 				}
 			}
 		}
+		direction = "d";
+		bodyDir = 0;
+		txBody = AffineTransform.getTranslateInstance(x+scle*4, y+scle*21);
 	}
 	
 	public void shoot() {
@@ -117,6 +126,28 @@ public class Isaac extends Entity{
 	
 	public void update() {
 		
+		if(movingDown){
+			direction = "d";
+			bodyDir = 0;
+			body = getImage("/imgs/Isaac/walkf.gif");
+		} else if(movingUp){
+			direction = "u";
+			bodyDir = 0;
+			body = getImage("/imgs/Isaac/walkf.gif");
+		} else if(movingLeft){
+			direction = "l";
+			bodyDir = 2;
+			body = getImage("/imgs/Isaac/walkl.gif");
+		} else if(movingRight){
+			bodyDir = 1;
+			direction = "r";
+			body = getImage("/imgs/Isaac/walkr.gif");
+		} else{
+			body = getImage("/imgs/Isaac/stand" + Integer.toString(bodyDir) + ".gif");
+		}
+
+		img = getImage("/imgs/Isaac/headf.png");
+
 		x += vx;
 		y += vy;
 		
@@ -145,13 +176,18 @@ public class Isaac extends Entity{
 		if(shotTimer > 0) {
 			shotTimer --;
 		}
+
+		tx = AffineTransform.getTranslateInstance(x, y);
+		txBody = AffineTransform.getTranslateInstance(x+scle*4, y+scle*21);
+		tx.scale(scle, scle);
+		txBody.scale(scle, scle);
 	}
 	
 	public void paint(Graphics g) {
 		//these are the 2 lines of code needed draw an image on the screen
 		Graphics2D g2 = (Graphics2D) g;
-		g.fillRect(x, y, w, h);
-		g.fillRect(x, y, w, h);
+		g2.drawImage(body, txBody, null);
+		g2.drawImage(img, tx, null);
 		update();
 	}
 }

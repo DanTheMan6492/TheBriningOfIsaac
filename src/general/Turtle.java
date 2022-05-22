@@ -11,6 +11,8 @@ import java.awt.geom.AffineTransform;
 import java.net.URL;
 import java.util.ArrayList;
 
+import Level.Tile;
+
 public class Turtle extends Enemy{
 	
 	public int randomTimer, moveTimer;
