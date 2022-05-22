@@ -3,9 +3,11 @@ package Level;
 public class Level {
     
     public static Room[][] level;
+    public static boolean exitGenned;
 
     public static void genLevel(){
         level = new Room[4][3];
+        exitGenned = false;
         levelHelper(1, 3, 0, true);
         initRooms();
         for(Room[] row : Level.level){
@@ -23,33 +25,31 @@ public class Level {
     }
 
     //dir 0: up
-    //dir 1: up-right
-    //dir 2: right
-    //dir 3: down-right
-    //dir 4: down;
-    //dir 5: down-left;
-    //dir 6: left
-    //dir 7: moving up-left
+    //dir 1: right
+    //dir 2: down
+    //dir 3: left
     public static void levelHelper(int x, int y, int dir, boolean init){
         if(level[y][x] == null){
             if(init)
                 level[y][x] = new Room(0, x, y);
             else if (y == 0){
-                level[y][x] = new Room(4, x, y);
+                level[y][x] = new Room(3, x, y);
             }
             else
-                level[y][x] = new Room( (int) (Math.random() * 3) + 1, x, y);
+                level[y][x] = new Room( (int) (Math.random() * 2) + 1, x, y);
         }
         if(!init){
-            level[y][x].exits[(dir+2) % 4] = true;;
+            level[y][x].exits[(dir+2) % 4] = true;
             if(y == 0)
                 return;
         }
 
 
         if(y == 1){
-        	level[y][x].exits[0] = true;
-        	levelHelper(x, y-1, 0, false);
+            if(!exitGenned){
+        	    level[y][x].exits[0] = true;
+        	    levelHelper(x, y-1, 0, false);
+            }
         	return;
         }
         boolean flag = true;
@@ -89,11 +89,7 @@ public class Level {
         switch(dir){
             case 1:
             return x + 1;
-            case 2:
-            return x + 1;
-            case 6:
-            return x - 1;
-            case 7:
+            case 3:
             return x - 1;
             default:
             return x;
@@ -104,10 +100,6 @@ public class Level {
     public static int newY(int y, int dir){
         switch(dir){
             case 0:
-            return y - 1;
-            case 1:
-            return y - 1;
-            case 7:
             return y - 1;
             default:
             return y;
